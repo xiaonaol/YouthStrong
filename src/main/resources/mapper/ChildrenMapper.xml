@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.zrxjuly.dao.IChildrenDao" >
+    <select id="adminGetChildren" resultType="Children">
+		SELECT children_account,children_name
+		  FROM children_info
+	</select>
+
+</mapper>

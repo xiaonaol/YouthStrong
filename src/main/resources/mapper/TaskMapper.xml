@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.zrxjuly.dao.ITaskDao" >
+
+    <!-- 查询所有学习任务 -->
+    <select id="getAllLearningTask" resultType="LearningTask">
+        SELECT id,context,child_name
+        FROM learning_task
+    </select>
+
+    <!-- 查询所有交互任务 -->
+    <select id="getAllInteractTask" resultType="InteractTask">
+        SELECT id,context,child_name,volunteer_name
+        FROM interact_task
+    </select>
+
+    <select id="adminGetLearningTaskById" parameterType="String" resultType="LearningTask">
+        SELECT id,child_name,context
+        FROM learning_task
+        WHERE id = #{id}
+    </select>
+
+    <select id="adminGetInteractTaskById" parameterType="String" resultType="InteractTask">
+        SELECT id,child_name,volunteer_name,context
+        FROM interact_task
+        WHERE id = #{id}
+    </select>
+
+    <update id="editLearningTaskInfo" parameterType="LearningTask">
+        UPDATE learning_task
+        SET context = #{context}
+        WHERE id = #{id}
+    </update>
+
+    <update id="editInteractTaskInfo" parameterType="InteractTask">
+        UPDATE interact_task
+        SET volunteer_name = #{volunteer_name}, context = #{context}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="adminDelLearningTaskById" parameterType="String">
+        DELETE FROM learning_task
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="adminDelInteractTaskById" parameterType="String">
+        DELETE FROM interact_task
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="createLearningTask" parameterType="LearningTask">
+        insert into learning_task(id, context, child_name)
+        values(#{id},#{context},#{child_name})
+    </insert>
+
+    <insert id="createInteractTask" parameterType="InteractTask">
+        insert into interact_task(id, context, child_name, volunteer_name)
+        values(#{id},#{context},#{child_name},#{volunteer_name})
+    </insert>
+</mapper>

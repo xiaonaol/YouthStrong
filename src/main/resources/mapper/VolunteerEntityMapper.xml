@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyz.zrxjuly.dao.VolunteerEntityMapper">
+  <resultMap id="BaseResultMap" type="xyz.zrxjuly.dao.entity.VolunteerEntity">
+    <id column="volunteer_account" jdbcType="VARCHAR" property="volunteerAccount" />
+    <result column="volunteer_password" jdbcType="VARCHAR" property="volunteerPassword" />
+    <result column="volunteer_name" jdbcType="VARCHAR" property="volunteerName" />
+    <result column="volunteer_gender" jdbcType="VARCHAR" property="volunteerGender" />
+    <result column="volunteer_email" jdbcType="VARCHAR" property="volunteerEmail" />
+    <result column="volunteer_creation_date" jdbcType="TIMESTAMP" property="volunteerCreationDate" />
+    <result column="volunteer_birthday" jdbcType="TIMESTAMP" property="volunteerBirthday" />
+    <result column="volunteer_age" jdbcType="VARCHAR" property="volunteerAge" />
+    <result column="volunteer_picture" jdbcType="VARCHAR" property="volunteerPicture" />
+    <result column="volunteer_description" jdbcType="VARCHAR" property="volunteerDescription" />
+    <result column="volunteer_school" jdbcType="VARCHAR" property="volunteerSchool" />
+    <result column="volunteer_address" jdbcType="VARCHAR" property="volunteerAddress" />
+    <result column="volunteer_identity" jdbcType="VARCHAR" property="volunteerIdentity" />
+    <result column="volunteer_created_by" jdbcType="VARCHAR" property="volunteerCreatedBy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="xyz.zrxjuly.dao.entity.VolunteerEntity">
+
+  </resultMap>
+  <sql id="Base_Column_List">
+
+  </sql>
+  <sql id="Blob_Column_List">
+
+  </sql>
+
+  <insert id="insertSelective" parameterType="xyz.zrxjuly.dao.entity.VolunteerEntity">
+    insert into volunteer_info(volunteer_account, volunteer_password, volunteer_name, volunteer_gender, volunteer_email, volunteer_creation_date, volunteer_birthday, volunteer_age, volunteer_picture, volunteer_description, volunteer_school, volunteer_address, volunteer_identity, volunteer_created_by)
+    values(#{volunteer_account,jdbcType=VARCHAR}, #{volunteer_password,jdbcType=VARCHAR}, #{volunteer_name,jdbcType=VARCHAR}, #{volunteer_gender,jdbcType=VARCHAR}, #{volunteer_email,jdbcType=VARCHAR}, #{volunteer_creation_date,jdbcType=TIMESTAMP}, #{volunteer_birthday,jdbcType=TIMESTAMP}, #{volunteer_age,jdbcType=VARCHAR}, #{volunteer_picture,jdbcType=VARCHAR}, #{volunteer_description,jdbcType=VARCHAR}, #{volunteer_school,jdbcType=VARCHAR}, #{volunteer_address,jdbcType=VARCHAR}, #{volunteer_identity,jdbcType=VARCHAR}, #{volunteer_created_by,jdbcType=VARCHAR})
+  </insert>
+
+
+
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.example.dao.entity.ProjectEntity">-->
+
+<!--  </update>-->
+
+
+  <!--根据志愿者用户名删除志愿者-->
+  <delete id="deleteVolunteerByAccount" parameterType="java.lang.String">
+    DELETE FROM volunteer_info
+    WHERE volunteer_account = #{volunteer_account,jdbcType=VARCHAR}
+  </delete>
+
+  <!--查询志愿者列表-->
+  <select id="queryVolunteerList" parameterType="xyz.zrxjuly.dao.entity.VolunteerEntity" resultType="java.util.Map">
+    SELECT volunteer_account, volunteer_password, volunteer_name, volunteer_gender, volunteer_email, volunteer_creation_date, volunteer_birthday, volunteer_age, volunteer_description, volunteer_school, volunteer_address
+    FROM volunteer_info
+    <where>
+      <if test = "volunteer_email != null and volunteer_email != '' ">
+        volunteer_email LIKE CONCAT('%',#{volunteer_email,jdbcType=VARCHAR},'%')
+      </if>
+      <if test = "volunteer_account !=null and volunteer_account !=''">
+      AND volunteer_account = #{volunteer_account,jdbcType=VARCHAR}
+      </if>
+    </where>
+    ORDER BY volunteer_creation_date DESC
+  </select>
+
+  <!--查询全部志愿者的用户名接口-->
+  <select id="queryAllVolunteerAccount" resultType="map">
+    SELECT volunteer_account
+    FROM volunteer_info
+  </select>
+
+
+  
+  <!-- 根据志愿者用户名精准查询志愿者 -->
+  <select id="queryVolunteerEntity" parameterType="xyz.zrxjuly.dao.entity.VolunteerEntity" resultType="xyz.zrxjuly.dao.entity.VolunteerEntity">
+  SELECT volunteer_account
+  FROM volunteer_info
+  WHERE  volunteer_account = #{volunteer_account,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据志愿者用户名修改志愿者 -->
+  <update id="updateVolunteerByAccount" parameterType="xyz.zrxjuly.dao.entity.VolunteerEntity">
+  update volunteer_info
+  set volunteer_password = #{volunteer_password,jdbcType=VARCHAR},
+      volunteer_email = #{volunteer_email,jdbcType=VARCHAR},
+      volunteer_creation_date = #{volunteer_creation_date,jdbcType=TIMESTAMP},
+      volunteer_birthday = #{volunteer_birthday,jdbcType=TIMESTAMP},
+      volunteer_age = #{volunteer_age,jdbcType=VARCHAR},
+      volunteer_picture = #{volunteer_picture,jdbcType=VARCHAR},
+      volunteer_description = #{volunteer_description,jdbcType=VARCHAR},
+      volunteer_address = #{volunteer_address,jdbcType=VARCHAR},
+      volunteer_school = #{volunteer_school,jdbcType=VARCHAR},
+      volunteer_gender = #{volunteer_gender,jdbcType=VARCHAR},
+      volunteer_created_by = #{volunteer_created_by,jdbcType=VARCHAR},
+      volunteer_name = #{volunteer_name,jdbcType=VARCHAR}
+  where volunteer_account = #{volunteerAccount,jdbcType=VARCHAR}
+  WHERE id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

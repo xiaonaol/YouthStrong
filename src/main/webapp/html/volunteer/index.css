@@ -1,0 +1,60 @@
+.list-top {
+  border-bottom: 1px solid #e3e3e6;
+  padding-bottom: 35px;
+  margin-bottom: 35px;
+  margin-left: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-top > div:first-child {
+  display: flex;
+}
+
+.btn-create-project {
+  margin-right: 20px;
+}
+
+.list {
+  border: 1px solid #E7E7E7;
+  margin-bottom: 30px;
+  margin-left: 100px;
+}
+
+.list-header {
+  background-color: #F5F5F5;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.list-header img {
+  width: 100px; /* 设置照片宽度 */
+  height: 100px; /* 设置照片高度 */
+  border-radius: 50%; /* 圆形照片 */
+  margin-right: 15px; /* 照片和文本之间的间距 */
+}
+
+.list-header .volunteer_account {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+}
+
+.list-header .buttons {
+  display: flex;
+}
+
+.btn-link {
+  padding: 0 !important;
+  margin-right: 35px;
+  font-size: 60px;
+}
+
+.list-footer > div {
+  color: red;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
