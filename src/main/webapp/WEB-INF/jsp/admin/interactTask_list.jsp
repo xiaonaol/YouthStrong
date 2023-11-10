@@ -22,6 +22,12 @@
 						<div class="page-header">
 							<h1>交互任务信息：</h1>
 						</div>
+
+						<form action="findInteractTask">
+							<input type="text" id="key" name="key" placeholder="儿童姓名">
+							<button type="submit" >查询</button>
+						</form>
+
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="row">

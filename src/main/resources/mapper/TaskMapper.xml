@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="xyz.zrxjuly.dao.ITaskDao" >
+    <sql id="dynamicWhere">
+        <where>
+            <!-- 如果传入的key参数不为空，就按照key模糊匹配child_name字段 -->
+            <if test="key != null and key != ''">
+                and (child_name like concat('%', ${key}, '%'))
+            </if>
+        </where>
+    </sql>
+
+    <select id="findLearningTask" parameterType="String" resultType="LearningTask">
+        SELECT id, context, child_name, start_date, end_date
+        FROM learning_task
+        WHERE child_name=#{key}
+        ORDER BY start_date DESC
+    </select>
+
+    <select id="findInteractTask" parameterType="String" resultType="InteractTask">
+        SELECT id, context, child_name, volunteer_name, start_date, end_date
+        FROM interact_task
+        WHERE child_name=#{key}
+        ORDER BY start_date DESC
+    </select>
+
+<!--    <select id="findLearningTask" parameterType="string" resultType="LearningTask">-->
+<!--        select id, child_name, context, start_date, end_date from learning_task-->
+<!--        &lt;!&ndash; 引用上面定义的sql片段 &ndash;&gt;-->
+<!--        <include refid="dynamicWhere"/>-->
+<!--    </select>-->
 
     <!-- 查询所有学习任务 -->
     <select id="getAllLearningTask" resultType="LearningTask">

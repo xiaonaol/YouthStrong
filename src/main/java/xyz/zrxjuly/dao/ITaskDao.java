@@ -27,4 +27,8 @@ public interface ITaskDao {
     boolean createLearningTask(LearningTask learningTask);
 
     boolean createInteractTask(InteractTask interactTask);
+
+    List<LearningTask> findLearningTask(String key);
+
+    List<InteractTask> findInteractTask(String key);
 }

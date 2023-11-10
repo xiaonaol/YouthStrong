@@ -22,6 +22,12 @@
 						<div class="page-header">
 							<h1>学习任务信息：</h1>
 						</div>
+
+						<form action="findLearningTask">
+							<input type="text" id="key" name="key" placeholder="儿童姓名">
+							<button type="submit" >查询</button>
+						</form>
+
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="row">
@@ -117,6 +123,18 @@
 
 			function toCreateLearningTask() {
 				window.location.href="toAdminCreateLearningTask";
+			}
+
+			function find() {
+				// 构建要发送的数据对象
+				var key = $('#key').val();
+				// 发送数据到服务器，您需要根据实际情况修改URL和数据处理方式
+				$.ajax({
+					type: 'post',
+					url: 'findLearningTask', // 这里填写您的服务器端接收数据的URL
+					data: {"key":key}, // 将对象转换为JSON字符串
+					dataType : 'json' // 设置发送数据的格式为 JSON
+				});
 			}
 		</script>
 	</body>
