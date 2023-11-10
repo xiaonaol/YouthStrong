@@ -32,6 +32,8 @@
 													<th>序号</th>
 													<th>儿童姓名</th>
 													<th>任务内容</th>
+													<th>开始时间</th>
+													<th>结束时间</th>
 													<th>操作</th>
 												</tr>
 											</thead>
@@ -46,6 +48,8 @@
 																</td>
 																<td>${learningTask.child_name }</td>
 																<td>${learningTask.context }</td>
+																<th>${learningTask.start_date}</th>
+																<th>${learningTask.end_date}</th>
 																<td>
 																	<div class="hidden-sm hidden-xs btn-group">
 																		<!-- <button class="btn btn-xs btn-success">

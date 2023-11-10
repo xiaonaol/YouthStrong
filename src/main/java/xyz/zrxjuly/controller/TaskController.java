@@ -114,9 +114,9 @@ public class TaskController {
         return "admin/createInteractTask";
     }
 
-    @RequestMapping("CreateLearningTask")
+    @RequestMapping("createLearningTask")
     @ResponseBody
-    public JSONObject CreateLearningTask(LearningTask learningTask) {
+    public JSONObject createLearningTask(LearningTask learningTask) {
         JSONObject json = new JSONObject();
         System.out.println(learningTask);
         if(taskService.createLearningTask(learningTask)) {

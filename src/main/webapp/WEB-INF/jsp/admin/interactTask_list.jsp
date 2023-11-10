@@ -33,6 +33,8 @@
 													<th>儿童姓名</th>
 													<th>志愿者姓名</th>
 													<th>任务内容</th>
+													<th>开始时间</th>
+													<th>结束时间</th>
 													<th>操作</th>
 												</tr>
 											</thead>
@@ -48,6 +50,8 @@
 																<td>${interactTask.child_name }</td>
 																<td>${interactTask.volunteer_name }</td>
 																<td>${interactTask.context }</td>
+																<td>${interactTask.start_date}</td>
+																<td>${interactTask.end_date}</td>
 																<td>
 																	<div class="hidden-sm hidden-xs btn-group">
 																		<!-- <button class="btn btn-xs btn-success">

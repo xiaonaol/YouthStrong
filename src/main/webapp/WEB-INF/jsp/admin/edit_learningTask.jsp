@@ -34,6 +34,18 @@
 											<input type="text" id="context" name="context" value="${learningTask.context }" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开始时间 </label>
+										<div class="col-sm-9">
+											<input type="date" id="start_date" name="start_date" readonly="readonly" value="${learningTask.start_date}"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 结束时间 </label>
+										<div class="col-sm-9">
+											<input type="date" id="end_date" name="end_date" value="${learningTask.end_date}"/>
+										</div>
+									</div>
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
 											<button class="btn btn-info" type="button" id="btn_submit" onclick="editLearningTaskInfo()">
@@ -59,13 +71,15 @@
 			}
 			function editLearningTaskInfo() {
 				var id = $('#id').val();
-				var context = $('#context').val();
-				var child_name = $('#child_name').val();
+				var	context = $('#context').val();
+				var	child_name = $('#child_name').val();
+				var	start_date = $('#start_date').val();
+				var	end_date = $('#end_date').val();
 
 				$.ajax({
 					type : "post",
 					url : "adminEditLearningTaskInfo",
-					data : {"id":id,"context":context,"child_name":child_name},
+					data : {"id":id,"context":context,"child_name":child_name,"start_date":start_date,"end_date":end_date},
 					dataType : 'json',
 					success(data){
 						if (data.msg === "success") {

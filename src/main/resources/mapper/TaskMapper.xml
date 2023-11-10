@@ -4,37 +4,38 @@
 
     <!-- 查询所有学习任务 -->
     <select id="getAllLearningTask" resultType="LearningTask">
-        SELECT id,context,child_name
+        SELECT id,context,child_name,start_date, end_date
         FROM learning_task
     </select>
 
     <!-- 查询所有交互任务 -->
     <select id="getAllInteractTask" resultType="InteractTask">
-        SELECT id,context,child_name,volunteer_name
+        SELECT id,context,child_name,volunteer_name,start_date, end_date
         FROM interact_task
     </select>
 
     <select id="adminGetLearningTaskById" parameterType="String" resultType="LearningTask">
-        SELECT id,child_name,context
+        SELECT id,child_name,context,start_date, end_date
         FROM learning_task
         WHERE id = #{id}
     </select>
 
     <select id="adminGetInteractTaskById" parameterType="String" resultType="InteractTask">
-        SELECT id,child_name,volunteer_name,context
+        SELECT id,child_name,volunteer_name,context,start_date, end_date
         FROM interact_task
         WHERE id = #{id}
     </select>
 
     <update id="editLearningTaskInfo" parameterType="LearningTask">
         UPDATE learning_task
-        SET context = #{context}
+        SET context = #{context}, end_date = #{end_date}
         WHERE id = #{id}
     </update>
 
     <update id="editInteractTaskInfo" parameterType="InteractTask">
         UPDATE interact_task
-        SET volunteer_name = #{volunteer_name}, context = #{context}
+        SET volunteer_name = #{volunteer_name}, context = #{context},
+            end_date = #{end_date}
         WHERE id = #{id}
     </update>
 
@@ -49,12 +50,12 @@
     </delete>
 
     <insert id="createLearningTask" parameterType="LearningTask">
-        insert into learning_task(id, context, child_name)
-        values(#{id},#{context},#{child_name})
+        insert into learning_task(id, context, child_name, start_date, end_date)
+        values(#{id}, #{context}, #{child_name}, #{start_date}, #{end_date})
     </insert>
 
     <insert id="createInteractTask" parameterType="InteractTask">
-        insert into interact_task(id, context, child_name, volunteer_name)
-        values(#{id},#{context},#{child_name},#{volunteer_name})
+        insert into interact_task(id, context, child_name, volunteer_name, start_date, end_date)
+        values(#{id}, #{context}, #{child_name}, #{volunteer_name}, #{start_date}, #{end_date})
     </insert>
 </mapper>

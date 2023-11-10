@@ -40,6 +40,18 @@
 											<input type="text" id="context" name="context" value="${interactTask.context }" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开始时间 </label>
+										<div class="col-sm-9">
+											<input type="date" id="start_date" value="${interactTask.start_date}"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 结束时间 </label>
+										<div class="col-sm-9">
+											<input type="date" id="end_date" value="${interactTask.end_date}"/>
+										</div>
+									</div>
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
 											<button class="btn btn-info" type="button" id="btn_submit" onclick="createInteractTask()">
@@ -65,14 +77,16 @@
 			}
 			function createInteractTask() {
 				var id = $('#id').val();
-				var context = $('#context').val();
-				var child_name = $('#child_name').val();
+				var	context = $('#context').val();
+				var	child_name = $('#child_name').val();
 				var volunteer_name = $('#volunteer_name').val();
+				var	start_date = $('#start_date').val();
+				var	end_date = $('#end_date').val();
 				
 				$.ajax({
 					type : "post",
 					url : "CreateInteractTask",
-					data : {"id":id,"context":context,"child_name":child_name,"volunteer_name":volunteer_name},
+					data : {"id":id,"context":context,"child_name":child_name,"volunteer_name":volunteer_name,"start_date":start_date,"end_date":end_date},
 					dataType : 'json',
 					success : function(data){ 
 						if (data.msg == 'success') {
